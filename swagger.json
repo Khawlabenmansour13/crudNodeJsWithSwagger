@@ -1,0 +1,170 @@
+{
+
+
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "My User Project CRUD",
+      "description": "My User Project Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Contact",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"]
+,
+
+    "paths": {
+
+        "/contact/delete/{id}": {
+            "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID of contact that we want to find",
+                  "type": "string",
+                  "format": "ObjectId"
+                }
+            ],
+            "delete": {
+                "summary": "Delete contact with given ID",
+    "tags": ["Contact"],
+    "responses": {
+      "200": {
+        "description": "Contact is deleted",
+        "schema": {
+          "$ref": "#/definitions/Contact"
+        }
+      }
+    }
+            }
+        },
+
+
+
+      "/contact/update/{id}" : 
+      
+      {  "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string",
+          "format": "ObjectId"
+        }
+      ],
+      "put": {
+        "summary": "Update contact with give ID",
+        "tags": ["Contacts"],
+        "parameters": [
+          {
+            "name": "contact",
+            "in": "body",
+            "description": "Contact with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact is updated",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          }
+        }
+      }
+    } , 
+
+      "/contact/display": {
+        "get": {
+          "tags": ["Contact"],
+          "summary": "Get all contact in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/contact/display"
+              }
+            }
+          }
+        }
+      },
+      "/contact/add": {
+        "post": {
+            "tags": ["Contact"],
+            "description": "Create new contact in system",
+            "parameters": [
+              {
+                "name": "contact",
+                "in": "body",
+                "description": "contact that we want to create",
+                "schema": {
+                  "$ref": "#/definitions/Contact"
+                }
+              }
+            ],
+            "produces": ["application/json"],
+            "responses": {
+              "200": {
+                "description": "New contact is created",
+                "schema": {
+                  "$ref": "#/definitions/Contact"
+                }
+            }
+        }
+        }
+   
+   
+   
+   
+    
+    
+    
+    
+    
+    },
+
+
+    "definitions": {
+      "Contact": {
+        "required": ["FullName", "_id", "Phone","Email"],
+        "properties": {
+          "_id": {
+            "type": "integer",
+            "uniqueItems": true
+          },
+         
+          "FullName": {
+            "type": "string"
+          },
+          "Phone": {
+              "type": "string"
+          },
+          "Email": {
+              "type":"string"
+          }
+         
+          }
+        }
+      },
+      "Contact": {
+        "type": "array",
+        "$ref": "#/definitions/contact"
+      }
+    }
+}
+  
